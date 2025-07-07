@@ -1,5 +1,4 @@
 FROM alpine:3.20
-LABEL org.opencontainers.image.authors="seji@tihoda.de"
 ARG TARGETPLATFORM
 
 ENV DNSDIST_BIND_IP=0.0.0.0
@@ -19,7 +18,6 @@ ENV DNSDIST_RATE_LIMIT_BLOCK=1000
 ENV DNSDIST_RATE_LIMIT_BLOCK_DURATION=360
 ENV DNSDIST_RATE_LIMIT_EVAL_WINDOW=60
 
-ENV SPOOF_ALL_DOMAINS=false
 ENV DYNDNS_CRON_SCHEDULE="*/1 * * * *"
 
 # HEALTHCHECKS
@@ -47,7 +45,6 @@ RUN mkdir -p /etc/dnsdist/conf.d && \
 
 # Copy Files
 COPY dnsdist.conf.template /etc/dnsdist.conf.template
-COPY configs/dnsdist/conf.d/00-SniDust.conf /etc/dnsdist/conf.d/00-SniDust.conf
 
 COPY entrypoint.sh /entrypoint.sh
 COPY generateACL.sh /generateACL.sh
