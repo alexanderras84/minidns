@@ -59,10 +59,6 @@ if [ "${DNSDIST_DEBUG}" == "true" ]; then
     echo ""
 fi
 
-echo "-- query reload.domainlist.minidns.local to reload Blocklist"
-echo "addAction(AndRule({QNameRule(\"reload.domainlist.minidns.local\"),QTypeRule(\"A\")}),LuaAction(ReloadBlocklist))"
-echo ""
-
 echo "-- query reload.acl.minidns.local to reload ACL"
 echo "addAction(AndRule({QNameRule(\"reload.acl.minidns.local\"),QTypeRule(\"A\")}),LuaAction(ReloadACL))"
 echo ""
