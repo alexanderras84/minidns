@@ -44,7 +44,7 @@ RUN mkdir -p /etc/dnsdist/conf.d && \
     mkdir -p /etc/minidns/
 
 # Copy Files
-COPY dnsdist.conf.template /etc/dnsdist.conf.template
+COPY dnsdist.conf.template /etc/dnsdist/dnsdist.conf.template
 COPY minidns.conf /etc/dnsdist/conf.d/minidns.conf
 
 COPY entrypoint.sh /entrypoint.sh
