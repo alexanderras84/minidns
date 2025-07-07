@@ -25,7 +25,6 @@ HEALTHCHECK --interval=30s --timeout=3s CMD (pgrep "dnsdist" > /dev/null) || exi
 
 # Expose Ports
 EXPOSE 53/udp
-EXPOSE 
 
 RUN echo "I'm building for $TARGETPLATFORM"
 
