@@ -57,7 +57,5 @@ RUN chown -R minidns:minidns /etc/dnsdist/ && \
     chmod +x /generateACL.sh && \
     chmod +x dynDNSCron.sh
 
-USER minidns
-
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["/bin/bash", "/entrypoint.sh"]
