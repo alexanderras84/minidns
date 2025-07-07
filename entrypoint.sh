@@ -33,12 +33,4 @@ then
 fi
 
 echo "[INFO] Starting DNSDist..."
-/usr/bin/dnsdist -C /etc/dnsdist/dnsdist.conf --supervised --disable-syslog --uid minidns --gid minidns &
-
-
-
-sleep 5
-
-echo "==================================================================="
-echo "[INFO] MiniDNS started => Point your DNS settings to this address"
-echo "==================================================================="
+/usr/bin/dnsdist -C /etc/dnsdist/dnsdist.conf --supervised --disable-syslog --uid minidns --gid minidns
