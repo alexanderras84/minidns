@@ -24,7 +24,7 @@ ENV DYNDNS_CRON_SCHEDULE="*/1 * * * *"
 HEALTHCHECK --interval=30s --timeout=3s CMD (pgrep "dnsdist" > /dev/null) || exit 1
 
 # Expose Ports
-EXPOSE 5300/udp
+EXPOSE 53/udp
 
 RUN echo "I'm building for $TARGETPLATFORM"
 
