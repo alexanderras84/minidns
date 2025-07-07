@@ -35,7 +35,7 @@ RUN apk update && apk upgrade
 RUN addgroup minidns && adduser -D -H -G minidns minidns
 
 # Install needed packages and clean up
-RUN apk add --no-cache jq tini dnsdist curl bash gnupg procps ca-certificates openssl dog bind-tools lua5.4-filesystem ipcalc libcap supercronic step-cli && \
+RUN apk add --no-cache jq tini dnsdist curl bash gnupg procps ca-certificates openssl dog bind-tools lua5.4-filesystem ipcalc libcap supercronic step-cli nano && \
     rm -rf /var/cache/apk/*
 
 # Setup Folder(s)
