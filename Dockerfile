@@ -45,6 +45,7 @@ RUN mkdir -p /etc/dnsdist/conf.d && \
 
 # Copy Files
 COPY dnsdist.conf.template /etc/dnsdist.conf.template
+COPY minidns.conf /etc/dnsdist/conf.d/minidns.conf
 
 COPY entrypoint.sh /entrypoint.sh
 COPY generateACL.sh /generateACL.sh
