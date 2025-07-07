@@ -29,7 +29,7 @@ echo "-- Include Config"
 echo "includeDirectory(\"/etc/dnsdist/conf.d\")"
 echo ""
 
-echo "-- set ACL to prevent abuse use"
+echo "-- set ACL to prevent abuse"
 echo "setACLFromFile(\"/etc/dnsdist/allowedClients.acl\")"
 echo ""
 
@@ -43,12 +43,13 @@ fi
 # Only add default Upstream pool if no custom is defined/configured
 if [ "${DNSDIST_UPSTREAM_POOL_NAME}" == "upstream" ]; then
 echo "-- add default upstream pool"
-echo "newServer({address=\"8.8.8.8:853\", name=\"dns.google\", order=1, pool=\"upstream\", reconnectOnUp=true, maxCheckFailures=3, rise=3, tls=\"openssl\", subjectName=\"dns.google\", validateCertificates=true, mustResolve=true, checkInterval=${DNSDIST_UPSTREAM_CHECK_INTERVAL}, checkTimeout=2000})"
-echo "newServer({address=\"8.8.4.4:853\", name=\"dns.google\", order=1, pool=\"upstream\", reconnectOnUp=true, maxCheckFailures=3, rise=3, tls=\"openssl\", subjectName=\"dns.google\", validateCertificates=true, mustResolve=true, checkInterval=${DNSDIST_UPSTREAM_CHECK_INTERVAL}, checkTimeout=2000})"
-echo "newServer({address=\"1.1.1.1:443\", name=\"cloudflare-dns\", order=1, pool=\"upstream\", reconnectOnUp=true, maxCheckFailures=3, rise=3, tls=\"openssl\", subjectName=\"cloudflare-dns.com\", dohPath=\"/dns-query\", validateCertificates=true, mustResolve=false, checkInterval=${DNSDIST_UPSTREAM_CHECK_INTERVAL}, checkTimeout=2000})"
-echo "newServer({address=\"1.0.0.1:443\", name=\"cloudflare-dns\", order=1, pool=\"upstream\", reconnectOnUp=true, maxCheckFailures=3, rise=3, tls=\"openssl\", subjectName=\"cloudflare-dns.com\", dohPath=\"/dns-query\", validateCertificates=true, mustResolve=false, checkInterval=${DNSDIST_UPSTREAM_CHECK_INTERVAL}, checkTimeout=2000})"
+echo "newServer({address=\"8.8.8.8:853\", name=\"dns.google\", order=1, pool=\"upstream\", reconnectOnUp=true, maxCheckFailures=3, rise=3, tls=\"openssl\", subjectName=\"dns.google\", validateCertificates=true, mustResolve=true, checkInterval=${DNSDIST_UPSTREAM_CHECK_INTERVAL}, checkTimeout=300})"
+echo "newServer({address=\"8.8.4.4:853\", name=\"dns.google\", order=1, pool=\"upstream\", reconnectOnUp=true, maxCheckFailures=3, rise=3, tls=\"openssl\", subjectName=\"dns.google\", validateCertificates=true, mustResolve=true, checkInterval=${DNSDIST_UPSTREAM_CHECK_INTERVAL}, checkTimeout=300})"
+echo "newServer({address=\"1.1.1.1:443\", name=\"cloudflare-dns\", order=1, pool=\"upstream\", reconnectOnUp=true, maxCheckFailures=3, rise=3, tls=\"openssl\", subjectName=\"cloudflare-dns.com\", dohPath=\"/dns-query\", validateCertificates=true, mustResolve=false, checkInterval=${DNSDIST_UPSTREAM_CHECK_INTERVAL}, checkTimeout=300})"
+echo "newServer({address=\"1.0.0.1:443\", name=\"cloudflare-dns\", order=1, pool=\"upstream\", reconnectOnUp=true, maxCheckFailures=3, rise=3, tls=\"openssl\", subjectName=\"cloudflare-dns.com\", dohPath=\"/dns-query\", validateCertificates=true, mustResolve=false, checkInterval=${DNSDIST_UPSTREAM_CHECK_INTERVAL}, checkTimeout=300})"
+echo "newServer({address=\"freedns.controld.com:443\", name=\"controld\", order=1, pool=\"upstream\", reconnectOnUp=true, maxCheckFailures=3, rise=3, tls=\"openssl\", subjectName=\"freedns.controld.com\", dohPath=\"/dns-query\", validateCertificates=true, mustResolve=true, checkInterval=${DNSDIST_UPSTREAM_CHECK_INTERVAL}, checkTimeout=300})"
 echo ""
-echo "setPoolServerPolicy(roundrobin,\"upstream\")"
+echo "setPoolServerPolicy(firstAvailable,\"upstream\")"
 echo ""
 fi
 
