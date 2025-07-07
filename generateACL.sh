@@ -42,15 +42,3 @@ fi
 
 read_acl
 printf '%s\n' "${CLIENTS[@]}" > /etc/dnsdist/allowedClients.acl
-
-if [ -f "/etc/dnsdist/allowedClients.acl" ];
-then
-  echo "" > etc/nginx/allowedClients.conf
-  while read -r line
-  do
-    echo "allow $line;" >> /etc/nginx/allowedClients.conf
-  done < "/etc/dnsdist/allowedClients.acl"
-  echo "deny  all;" >> /etc/nginx/allowedClients.conf
-else
-  touch /etc/nginx/allowedClients.conf
-fi
