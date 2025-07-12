@@ -41,6 +41,9 @@ RUN apk add --no-cache \
   step-cli nano && \
   rm -rf /var/cache/apk/*
 
+# ---------- Grant CAP_NET_BIND_SERVICE to dnsdist ----------
+RUN setcap 'cap_net_bind_service=+ep' /usr/bin/dnsdist
+
 # ---------- Setup Directory Structure ----------
 RUN mkdir -p /etc/dnsdist/conf.d \
     /etc/dnsdist/certs \
