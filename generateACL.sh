@@ -71,4 +71,9 @@ while read -r line; do
 done < /etc/dnsdist/allowedClients.acl
 
 echo "addACL('0.0.0.0/0', false)" >> /etc/dnsdist/allowedClients.conf
+
+# Fix permissions so dnsdist running as 'minidns' can read the ACLs
+chown minidns:minidns /etc/dnsdist/allowedClients.acl /etc/dnsdist/allowedClients.conf
+chmod 644 /etc/dnsdist/allowedClients.acl /etc/dnsdist/allowedClients.conf
+
 echo "[INFO] ACL generation complete"
