@@ -7,7 +7,7 @@ export DYNDNS_CRON_ENABLED=false
 function read_acl () {
   # Add hardcoded Docker IPv6 subnet
   echo "[INFO] Adding hardcoded Docker IPv6 subnet to allowlist: fd00:beef:cafe::/64"
-  CLIENTS+=( "fd00:beef:cafe::/64" )
+  CLIENTS+=( "fd00:beef:cafe::" )
 
   for i in "${client_list[@]}"
   do
