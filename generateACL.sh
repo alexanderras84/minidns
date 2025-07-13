@@ -62,7 +62,7 @@ read_acl
 : > /etc/dnsdist/allowedClients.acl
 for ip in "${CLIENTS[@]}"; do
   if [[ "$ip" =~ : ]]; then
-    echo "$ip/128" >> /etc/dnsdist/allowedClients.acl
+    echo "$ip/64" >> /etc/dnsdist/allowedClients.acl
   else
     echo "$ip/32" >> /etc/dnsdist/allowedClients.acl
   fi
