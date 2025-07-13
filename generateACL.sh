@@ -5,9 +5,9 @@ CLIENTS=()
 export DYNDNS_CRON_ENABLED=false
 
 function read_acl () {
-  # Add hardcoded Docker IPv6 subnet
+  # Add hardcoded Docker IPv6 subnet with CIDR
   echo "[INFO] Adding hardcoded Docker IPv6 subnet to allowlist: fd00:beef:cafe::/64"
-  CLIENTS+=( "fd00:beef:cafe::" )
+  CLIENTS+=( "fd00:beef:cafe::/64" )
 
   for i in "${client_list[@]}"
   do
@@ -58,10 +58,13 @@ fi
 # Run ACL generation
 read_acl
 
-# Generate ACL with CIDR masks
+# Generate ACL with CIDR masks, only add mask if missing
 : > /etc/dnsdist/allowedClients.acl
 for ip in "${CLIENTS[@]}"; do
-  if [[ "$ip" =~ : ]]; then
+  if [[ "$ip" =~ / ]]; then
+    # Already has subnet mask
+    echo "$ip" >> /etc/dnsdist/allowedClients.acl
+  elif [[ "$ip" =~ : ]]; then
     echo "$ip/64" >> /etc/dnsdist/allowedClients.acl
   else
     echo "$ip/32" >> /etc/dnsdist/allowedClients.acl
