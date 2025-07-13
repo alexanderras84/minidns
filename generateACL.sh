@@ -5,6 +5,10 @@ CLIENTS=()
 export DYNDNS_CRON_ENABLED=false
 
 function read_acl () {
+  # Add hardcoded Docker IPv6 subnet
+  echo "[INFO] Adding hardcoded Docker IPv6 subnet to allowlist: fd00:beef:cafe::/64"
+  CLIENTS+=( "fd00:beef:cafe::/64" )
+
   for i in "${client_list[@]}"
   do
     if timeout 15s /usr/bin/ipcalc -cs "$i" >/dev/null 2>&1; then
