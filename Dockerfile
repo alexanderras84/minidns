@@ -21,6 +21,9 @@ ENV DNSDIST_RATE_LIMIT_EVAL_WINDOW=60
 
 ENV DYNDNS_CRON_SCHEDULE="*/1 * * * *"
 
+# ---------- Expose DNS Port ----------
+EXPOSE 53/udp
+
 # ---------- HEALTHCHECK ----------
 HEALTHCHECK --interval=30s --timeout=3s CMD (pgrep "dnsdist" > /dev/null) || exit 1
 
