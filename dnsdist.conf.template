@@ -23,6 +23,7 @@ echo ""
 echo ""
 echo "-- Add plain DNS bind"
 echo "addLocal('${DNSDIST_BIND_IP}:53')"
+echo "addLocal('[::]:53')"
 echo ""
 
 echo "-- Include Config"
